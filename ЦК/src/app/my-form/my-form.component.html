@@ -1,0 +1,10 @@
+<p>my-form works!</p>
+<form [formGroup]="form">
+    <input type="text" formControlName="name" placeholder="Name">
+  <button (click)="saveData()" [disabled]="form.invalid">Save</button>
+  </form>
+
+  <div *ngFor="let entity of entities">
+    <p>{{ entity.name }}</p>
+  </div>
+  

@@ -1,0 +1,58 @@
+<h1>Кухня</h1>
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label>Супы:</label>
+        <select formControlName="soups" class="form1">
+            <option *ngFor="let option of Soups" [value]="option"> {{option }}</option>
+        </select>
+    </div>
+    <div>
+        <label>Салаты:</label>
+        <select formControlName="salads" class="form1">
+            <option *ngFor="let option of Salads" [value]="option"> {{option }}</option>
+        </select>
+    </div>
+    <div>
+        <label>Пицца:</label>
+        <select formControlName="pizza" class="form1">
+            <option *ngFor="let option of Pizza" [value]="option"> {{option }}</option>
+        </select>
+    </div>
+    <div>
+        <label>Цена:</label>
+        <input type="string" maxlength="5" formControlName="price">
+    </div>
+    <div>
+        <label>Пожелания:</label>
+        <textarea formControlName="wishes"></textarea>
+    </div>
+    <button type="submit" [disabled]="!taskForm.valid">Add Task</button>
+</form>
+<style>
+    table, th, td{
+        border: 1px solid rgb(255, 255, 255);
+        border-collapse: collapse;
+        color: white;
+        font-size: 15px;
+    }
+</style>
+<table style="width: 100%;">
+    <tr>
+        <th>ID</th>
+        <th>Супы</th>
+        <th>Салаты</th>
+        <th>Пицца</th>
+        <th>Цена</th>
+        <th>Пожелания</th>
+        <th>Редактировать</th>
+    </tr>
+    <tr *ngFor="let task of tasks">
+        <td>{{ task.id }}</td>
+        <td>{{ task.soups }}</td>
+        <td>{{ task.salads }}</td>
+        <td>{{ task.pizza }}</td>
+        <td>{{ task.price }}</td>
+        <td>{{ task.wishes }}</td>
+        <td><button (click)="editTask(task.id)">Редактировать</button></td>
+    </tr>
+</table>

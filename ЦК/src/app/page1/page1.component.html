@@ -1,0 +1,77 @@
+<h1>Бронирование</h1>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label>Выберите ресторан:</label>
+        <select formControlName="restaurant">
+            <option *ngFor="let option of restOptions" [value]="option"> {{option }}</option>
+        </select>
+    </div>
+    <div>
+        <label>Количество человек:</label>
+        <input type="number" id="quantity" value="1" min="1" formControlName="people">
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("#decrement").click(function () {
+                var value = parseInt($("#quantity").val());
+                if (value > 1) {
+                    $("#quantity").val(value - 1);
+                }
+            });
+
+            $("#increment").click(function () {
+                var value = parseInt($("#quantity").val());
+                $("#quantity").val(value + 1);
+            });
+        });
+    </script>
+
+    <body>
+        <label>Дата и время:</label>
+        <input type="datetime-local" id="Test_DatetimeLocal" formControlName="date_time">
+    </body>
+    <div>
+        <label>Имя:</label>
+        <input type="text" formControlName="first_name">
+    </div>
+    <div>
+        <label>Номер телефона:</label>
+        <input type="string" maxlength="11" placeholder="8-800-555-35-35" formControlName="phone">
+    </div>
+    <div>
+        <label>Пожелания:</label>
+        <textarea formControlName="wishes"></textarea>
+    </div>
+    <button type="submit" [disabled]="!taskForm.valid">Add Task</button>
+</form>
+<style>
+    table, th, td{
+        border: 1px solid rgb(255, 255, 255);
+        border-collapse: collapse;
+        color: white;
+        font-size: 15px;
+    }
+</style>
+<table style="width: 100%;">
+    <tr>
+        <th>ID</th>
+        <th>Выберите ресторан</th>
+        <th>Количество человек</th>
+        <th>Дата и время</th>
+        <th>Имя</th>
+        <th>Номер телефона</th>
+        <th>Пожелания</th>
+        <th>Редактировать</th>
+    </tr>
+    <tr *ngFor="let tas of tasks">
+        <td>{{ tas.id }}</td>
+        <td>{{ tas.restaurant }}</td>
+        <td>{{ tas.people }}</td>
+        <td>{{ tas.date_time }}</td>
+        <td>{{ tas.first_name }}</td>
+        <td>{{ tas.phone }}</td>
+        <td>{{ tas.wishes }}</td>
+        <td><button (click)="editTask(tas.id)">Редактировать</button></td>
+    </tr>
+</table>

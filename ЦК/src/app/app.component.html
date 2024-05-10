@@ -1,0 +1,12 @@
+<body>
+  <h1>Отдохнем?</h1>
+  <nav>
+    <ul>
+      <li><a [routerLink]="['/page1']" (click)="goToPage1()">Бронирование</a></li>
+      <li><a [routerLink]="['/page2']" (click)="goToPage2()">Кухня</a></li>
+      <li><a routerLink="/page3">Напитки</a></li>
+      <div class="animation start-home"></div>
+    </ul>
+  </nav>
+  <router-outlet></router-outlet>
+</body>

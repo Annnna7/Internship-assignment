@@ -1,0 +1,19 @@
+<p>form-temp works!</p>
+
+<form #form="ngForm" (ngSubmit)="saveData(form)">
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" [(ngModel)]="formData.name" required pattern="[a-zA-Z ]*">
+      <div *ngIf="form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched)">
+        <div *ngIf="form.controls['name'].errors?.['required']">Name is required</div>
+      </div>
+    </div>
+    
+    <button type="submit" [disabled]="!form.valid">Save</button>
+  </form>
+  
+  <div *ngFor="let entity of entities">
+    <span class="text">{{ entity.name }}</span>
+
+  </div>
+  
